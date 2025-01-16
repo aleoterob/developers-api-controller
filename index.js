@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 // Configura CORS (opcional)
 app.use(cors());
 
-// Middleware para parsear el cuerpo de las solicitudes como JSON
+// ///////////Middleware para parsear el cuerpo de las solicitudes como JSON
 app.use(express.json());
 
 // Inicializa Supabase
