@@ -5,6 +5,12 @@ const { createClient } = require("@supabase/supabase-js");
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Configuración del puerto y escucha del servidor
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 // Configura CORS (opcional)
 app.use(cors());
 
@@ -79,9 +85,4 @@ app.post("/developers", async (req, res) => {
     console.error("Fetch failed:", err);
     res.status(500).json({ error: err.message });
   }
-});
-
-// Inicia el servidor
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
 });
