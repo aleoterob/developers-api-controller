@@ -54,23 +54,21 @@ app.post("/developers", async (req, res) => {
       github_profile,
     } = req.body;
 
-    const { data, error } = await supabase
-      .from("developers")
-      .insert([
-        {
-          full_name,
-          age,
-          birth_date,
-          phone_number,
-          nacionality,
-          summary,
-          stack,
-          main_stack_technology,
-          profile_image,
-          linkedin_profile,
-          github_profile,
-        },
-      ]);
+    const { data, error } = await supabase.from("developers").insert([
+      {
+        full_name,
+        age,
+        birth_date,
+        phone_number,
+        nacionality,
+        summary,
+        stack,
+        main_stack_technology,
+        profile_image,
+        linkedin_profile,
+        github_profile,
+      },
+    ]);
 
     if (error) {
       console.error("Supabase error:", error);
