@@ -24,31 +24,23 @@ app.get("/", (req, res) => {
 
 // Endpoint para obtener todos los developers
 app.get("/developers", async (req, res) => {
-  const { data, error } = await supabase.from("developers").select("*");
-  if (error) {
-    return res.status(500).json({ error: error.message });
+  try {
+    const { data, error } = await supabase.from("developers").select("*");
+    if (error) {
+      console.error("Supabase error:", error);
+      throw error;
+    }
+    res.status(200).json(data);
+  } catch (err) {
+    console.error("Fetch failed:", err);
+    res.status(500).json({ error: err.message });
   }
-  res.status(200).json(data);
 });
 
 // Endpoint para agregar un nuevo developer
 app.post("/developers", async (req, res) => {
-  const {
-    full_name,
-    age,
-    birth_date,
-    phone_number,
-    nacionality,
-    summary,
-    stack,
-    main_stack_technology,
-    profile_image,
-    linkedin_profile,
-    github_profile,
-  } = req.body;
-
-  const { data, error } = await supabase.from("developers").insert([
-    {
+  try {
+    const {
       full_name,
       age,
       birth_date,
@@ -60,13 +52,35 @@ app.post("/developers", async (req, res) => {
       profile_image,
       linkedin_profile,
       github_profile,
-    },
-  ]);
+    } = req.body;
 
-  if (error) {
-    return res.status(500).json({ error: error.message });
+    const { data, error } = await supabase
+      .from("developers")
+      .insert([
+        {
+          full_name,
+          age,
+          birth_date,
+          phone_number,
+          nacionality,
+          summary,
+          stack,
+          main_stack_technology,
+          profile_image,
+          linkedin_profile,
+          github_profile,
+        },
+      ]);
+
+    if (error) {
+      console.error("Supabase error:", error);
+      throw error;
+    }
+    res.status(201).json(data);
+  } catch (err) {
+    console.error("Fetch failed:", err);
+    res.status(500).json({ error: err.message });
   }
-  res.status(201).json(data);
 });
 
 // Inicia el servidor
