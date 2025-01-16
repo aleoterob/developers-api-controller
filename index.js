@@ -11,7 +11,7 @@ app.use(cors());
 // ///////////Middleware para parsear el cuerpo de las solicitudes como JSON
 app.use(express.json());
 
-// Inicializa Supabase
+// Inicializa Supabasesdsds
 const supabaseUrl = "https://cqrallbhjbcavflvsuya.supabase.co";
 const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxcmFsbGJoamJjYXZmbHZzdXlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcwMzkxMTcsImV4cCI6MjA1MjYxNTExN30.McZrsR8krRNivqrFKf801KzZEDwkC3r9rKr0vgtrarY";
